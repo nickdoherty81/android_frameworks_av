@@ -62,6 +62,12 @@ LOCAL_CFLAGS += -DQTI_FLAC_DECODER
 endif
 endif
 
+ifneq ($(TARGET_USES_MEDIA_EXTENSIONS),true)
+ifeq ($(TARGET_HAS_LEGACY_CAMERA_HAL1),true)
+LOCAL_CFLAGS += -DCAMCORDER_GRALLOC_SOURCE
+endif
+endif
+
 LOCAL_MODULE:= libstagefright_omx
 LOCAL_CFLAGS += -Werror -Wall -Wno-unused-parameter -Wno-documentation
 LOCAL_SANITIZE := unsigned-integer-overflow signed-integer-overflow cfi
